@@ -3,6 +3,7 @@
   "extends": [
     "config:base"
   ],
+  "prHourlyLimit": 3,
   "branchConcurrentLimit": 4,
   "packageRules": [
     {
