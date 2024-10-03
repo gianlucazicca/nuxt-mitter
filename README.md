@@ -42,9 +42,8 @@ Provide your `event.d.ts` file with `type MitterEvents`:
 
 ```typescript
 export type MittEvents = {
-  decrement: string
-  increment: string
-  hello: string
+  foo: string
+  bar?: string
 }
 ```
 >[!IMPORTANT]
