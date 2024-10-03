@@ -1,7 +1,7 @@
 <script setup>
-const { listenTo } = useMitter()
+const { listen } = useMitter()
 
-listenTo('hello', e => alert(e))
+listen('hello', e => alert(e))
 </script>
 
 <template>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const { listenTo } = useMitter()
+const { listen } = useMitter()
 const counter = ref(0)
 
-listenTo('increment', () => {
+listen('increment', () => {
   counter.value++
 })
-listenTo('decrement', () => {
+listen('decrement', () => {
   counter.value--
 })
 </script>

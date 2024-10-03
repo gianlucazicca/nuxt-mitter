@@ -1,9 +1,8 @@
 <script setup lang="ts">
-const { emit } = useMitter()
+const { fire } = useMitter()
 const handle = () => {
-  emit('decrement')
+  fire('decrement')
 }
-
 </script>
 
 <template>

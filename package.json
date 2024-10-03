@@ -1,6 +1,6 @@
 {
-  "name": "@gianlucazicca/nuxt-mitt",
-  "version": "1.0.0",
+  "name": "nuxt-mitt",
+  "version": "0.0.1",
   "description": "Mitt nuxt module",
   "repository": "gianlucazicca/nuxt-mitt",
   "author": "Gianluca Zicca",

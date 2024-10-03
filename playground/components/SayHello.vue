@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { emit } = useMitter()
+const { fire } = useMitter()
 const handle = () => {
-  emit('hello', 'Hello 🫠🖖')
+  fire('hello', 'Hello 🫠🖖')
 }
 </script>
 

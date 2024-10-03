@@ -1,41 +1,111 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
-
-# My Module
+# Nuxt-mitter
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+Nuxt module for [mitt](https://github.com/developit) library - enable fully typed events and autocompletion
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+👏&nbsp;Credits to [developit](https://github.com/developit) author of the [mitt](https://github.com/developit) library
+
+
+✨ [Release notes](CHANGELOG.md)
+
+___
 
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+- ✅ &nbsp;Nuxt 3 support
+- 🤞 &nbsp;Easy to use composable
+- 🔌 &nbsp;auto-import - mitt provided by plugin
+- ♻️ &nbsp;Optimized with Vue/Nuxt Lifecycle hooks
 
-## Quick Setup
+## 📦&nbsp;Install
 
-Install the module to your Nuxt application with one command:
+Install `nuxt-mitter` as dependency:
 
 ```bash
-npx nuxi module add my-module
+    npm install nuxt-mitter
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+Add it to the `modules` section of your `nuxt.config.{ts|js}`:
+
+```typescript
+    modules: ['nuxt-mitter']
+```
+
+### ⚠️&nbsp;Optional - but strongly recommended
+
+Provide your `event.d.ts` file with `type MitterEvents`:
+
+```typescript
+export type MittEvents = {
+  decrement: string
+  increment: string
+  hello: string
+}
+```
+>[!IMPORTANT]
+> ❗&nbsp; Name of type must be `MitterEvents`
+
+ 🚧&nbsp; Improvements coming soon...
+
+_____
+
+Add `mitt` key to your `nuxt.config.{ts|js}` and provide path to types
+
+```typescript
+    mitt: {
+        types: '...'   //your path './types/eventTypes.d.ts'
+    }
+```
+
+
+
+🏁&nbsp;That's it! You can now use My Module in your Nuxt app 
+
+## 🚀 Examples
+
+Fire an event with the composable `useMitter`
+```vue
+<!--SayHello.vue-->
+<script setup lang="ts">
+  const { fire } = useMitter()
+  const onClick = () => {
+    fire('hello', 'Hello 🫠🖖')
+  }
+</script>
+
+<template>
+  <button @click="onClick">
+    Say Hello
+  </button>
+</template>
+```
+
+Listen to an event with the composable `useMitter`
+```vue
+<!--SomeWhereInTheComponentTree.vue-->
+<script setup>
+const { listen } = useMitter()
+
+listen('hello', e => alert(e))
+</script>
+```
+
+
+
+______
+<br>
+<br>
+
+- Name: Nuxt-Mitter
+- Package name: Nuxt-mitter
+- Author: Gianluca Zicca
+- Github: [gianlucazicca](https://github.com/gianlucazicca)
+- Description: Nuxt module for mitt enable fully typed events and autocompletion
 
 
 ## Contribution

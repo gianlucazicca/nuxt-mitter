@@ -10,7 +10,7 @@ export const useMitter = () => {
   const mitter = $mitter as Emitter<MittEvents>
 
   // Emit function with type-safe event and payload
-  const emit = <K extends keyof MittEvents>(event: K, payload?: MittEvents[K]): void => {
+  const fire = <K extends keyof MittEvents>(event: K, payload?: MittEvents[K]): void => {
     mitter.emit(event, payload!) // Emit with payload (which can be undefined if the event doesn't need it)
   }
 
@@ -24,10 +24,10 @@ export const useMitter = () => {
     mitter.off(event, handler) // Type-safe unregistration of the handler
   }
 
-  const listenTo = <K extends keyof MittEvents>(event: K, handler: (payload: MittEvents[K]) => void): void => {
+  const listen = <K extends keyof MittEvents>(event: K, handler: (payload: MittEvents[K]) => void): void => {
     onMounted(() => on(event, handler))
     onUnmounted(() => on(event, handler))
   }
 
-  return { emit, on, off, listenTo }
+  return { fire, on, off, listen }
 }
