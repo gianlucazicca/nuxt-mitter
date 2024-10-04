@@ -15,7 +15,8 @@ Nuxt module for [mitt](https://github.com/developit) library - enable fully type
 👏&nbsp;Credits to [developit](https://github.com/developit) author of the [mitt](https://github.com/developit) library
 
 
-✨ [Release notes](CHANGELOG.md)
+- ✨ [Release notes](CHANGELOG.md)
+- 🏀 [Online stackblitz playground](https://stackblitz.com/github/gianlucazicca/nuxt-mitter?file=playground%2Fapp.vue)
 
 ___
 
