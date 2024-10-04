@@ -55,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     addTypeTemplate({
       filename: 'types/mitt.d.ts',
-      src: resolve(runtimeDir, 'types.ts'),
+      src: resolve(runtimeDir, 'types.d.ts'),
     })
 
     addPlugin({

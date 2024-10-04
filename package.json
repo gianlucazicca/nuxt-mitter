@@ -2,7 +2,7 @@
   "name": "nuxt-mitter",
   "version": "0.0.1",
   "description": "Mitt nuxt module",
-  "repository": "gianlucazicca/nuxt-mitt",
+  "repository": "gianlucazicca/nuxt-mitter",
   "keywords": [
     "events",
     "eventemitter",
