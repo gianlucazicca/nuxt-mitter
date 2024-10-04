@@ -47,7 +47,7 @@ Add it to the `modules` section of your `nuxt.config.{ts|js}`:
 Provide your `event.d.ts` file with `type MitterEvents`:
 
 ```typescript
-export type MittEvents = {
+export type MitterEvents = {
   foo: string
   bar?: string
 }
