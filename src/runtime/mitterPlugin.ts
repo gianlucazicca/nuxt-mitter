@@ -1,14 +1,12 @@
-import mitt, { type EventType } from 'mitt'
+import mitt from 'mitt'
 import { defineNuxtPlugin } from 'nuxt/app'
-import type { MittEvents } from '#build/types/mittEvents'
+import type { MitterEvents } from '#build/types/mitterEvents'
 
 export default defineNuxtPlugin(() => {
-  const mitter = mitt<MittEvents>()
-  const initMitter = <T extends Record<EventType, unknown>>() => mitt<T>()
+  const mitter = mitt<MitterEvents>()
   return {
     provide: {
       mitter,
-      initMitter,
     },
   }
 })

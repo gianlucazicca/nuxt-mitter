@@ -104,16 +104,16 @@ listen('hello', e => alert(e))
 ## Types
 
 ```typescript
-export type FireFunction = <K extends keyof MittEvents>(event: K, payload?: MittEvents[K]) => void
+export type FireFunction = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => void
 
-export type EventHandlerFunction = <K extends keyof MittEvents>(
+export type EventHandlerFunction = <K extends keyof MitterEvents>(
   event: K,
-  handler: (payload: MittEvents[K]) => void
+  handler: (payload: MitterEvents[K]) => void
 ) => void
 
-export type ListenFunction = <K extends keyof MittEvents>(
+export type ListenFunction = <K extends keyof MitterEvents>(
   event: K,
-  handler: (payload: MittEvents[K]) => void
+  handler: (payload: MitterEvents[K]) => void
 ) => void
 
 export interface UseMitterReturn {

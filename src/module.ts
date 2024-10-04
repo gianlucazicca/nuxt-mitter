@@ -15,7 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     types: '',
   },
-  async setup(_options, _nuxt) {
+  setup(_options, _nuxt) {
     moduleMessenger('start')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     const { resolve } = createResolver(import.meta.url)
@@ -27,15 +27,15 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (projectTypesPath && existsSync(resolve(projectRootDir, projectTypesPath))) {
       addTypeTemplate({
-        filename: 'types/mittEvents.d.ts',
+        filename: 'types/mitterEvents.d.ts',
         src: resolve(projectRootDir, projectTypesPath),
       })
       moduleMessenger('success', projectTypesPath)
     }
     else {
       addTypeTemplate({
-        filename: 'types/mittEvents.d.ts',
-        src: resolve(runtimeDir, 'templates/mittEventsTemplate.d.ts'),
+        filename: 'types/mitterEvents.d.ts',
+        src: resolve(runtimeDir, 'templates/mitterEventsTemplate.d.ts'),
       })
       moduleMessenger('error', projectTypesPath)
     }

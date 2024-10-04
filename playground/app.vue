@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { listen } = useMitter()
 
 listen('hello', e => alert(e))
