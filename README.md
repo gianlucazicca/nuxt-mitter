@@ -1,5 +1,10 @@
-# Nuxt-mitter
+<p align="center">
+<img src="/docs/assets/nuxt-mitter-small.png" style="max-width: 330px">
+</p>
 
+
+# Nuxt-mitter
+_____
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]

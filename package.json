@@ -3,7 +3,20 @@
   "version": "0.0.2",
   "description": "Mitt nuxt module",
   "repository": "gianlucazicca/nuxt-mitt",
-  "author": "Gianluca Zicca",
+  "keywords": [
+    "events",
+    "eventemitter",
+    "emitter",
+    "eventbus",
+    "nuxt",
+    "nuxt-module",
+    "mitter",
+    "nuxt-mitter"
+  ],
+  "homepage": "https://github.com/gianlucazicca",
+  "authors":[
+    "Gianluca Zicca <gianluca.dev@proton.me>"
+  ],
   "license": "MIT",
   "type": "module",
   "exports": {
