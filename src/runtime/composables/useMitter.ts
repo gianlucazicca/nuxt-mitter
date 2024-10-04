@@ -2,31 +2,31 @@ import type { Emitter } from 'mitt'
 import { useNuxtApp } from '#app'
 import type { MittEvents } from '#build/types/mittEvents'
 import { onMounted, onUnmounted } from '#build/imports'
+import type { UseMitterComposable, EventHandlerFunction, FireFunction, ListenFunction } from '#mitter/types'
 
-export const useMitter = () => {
+/**
+ * A composable that provides a type-safe event emitter interface.
+ * @returns An object with methods to emit events, register and unregister event handlers.
+ */
+export const useMitter: UseMitterComposable = () => {
   const { $mitter } = useNuxtApp()
-
-  // Ensure $mitter is typed as `Emitter<MittEvents>`
   const mitter = $mitter as Emitter<MittEvents>
 
-  // Emit function with type-safe event and payload
-  const fire = <K extends keyof MittEvents>(event: K, payload?: MittEvents[K]): void => {
-    mitter.emit(event, payload!) // Emit with payload (which can be undefined if the event doesn't need it)
+  const fire: FireFunction = (event, payload) => {
+    mitter.emit(event, payload!)
   }
 
-  // On function with type-safe handler, adapting the type of the handler based on the event type
-  const on = <K extends keyof MittEvents>(event: K, handler: (payload: MittEvents[K]) => void): void => {
-    mitter.on(event, handler) // Type-safe registration of the handler
+  const on: EventHandlerFunction = (event, handler) => {
+    mitter.on(event, handler)
   }
 
-  // Off function with type-safe handler
-  const off = <K extends keyof MittEvents>(event: K, handler: (payload: MittEvents[K]) => void): void => {
-    mitter.off(event, handler) // Type-safe unregistration of the handler
+  const off: EventHandlerFunction = (event, handler) => {
+    mitter.off(event, handler)
   }
 
-  const listen = <K extends keyof MittEvents>(event: K, handler: (payload: MittEvents[K]) => void): void => {
+  const listen: ListenFunction = (event, handler) => {
     onMounted(() => on(event, handler))
-    onUnmounted(() => on(event, handler))
+    onUnmounted(() => off(event, handler))
   }
 
   return { fire, on, off, listen }
