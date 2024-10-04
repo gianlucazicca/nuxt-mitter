@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import { existsSync } from 'node:fs'
-import { defineNuxtModule, addPlugin, createResolver, useLogger, addImportsDir, addTypeTemplate } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, createResolver, addImportsDir, addTypeTemplate } from '@nuxt/kit'
+import { moduleMessenger } from './utils/moduleMessenger'
 
 export interface ModuleOptions {
   types: string
@@ -15,14 +16,7 @@ export default defineNuxtModule<ModuleOptions>({
     types: '',
   },
   async setup(_options, _nuxt) {
-    const logger = useLogger('nuxt-mitt', {
-      formatOptions:
-              {
-                date: false,
-                columns: 2,
-              },
-    })
-    logger.start(`Initializing nuxt-mitt module...`)
+    moduleMessenger('start')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     const { resolve } = createResolver(import.meta.url)
     const projectRootDir = _nuxt.options.rootDir
@@ -36,21 +30,14 @@ export default defineNuxtModule<ModuleOptions>({
         filename: 'types/mittEvents.d.ts',
         src: resolve(projectRootDir, projectTypesPath),
       })
-      logger.success(`event types used from: ${projectTypesPath}`)
+      moduleMessenger('success', projectTypesPath)
     }
     else {
       addTypeTemplate({
         filename: 'types/mittEvents.d.ts',
         src: resolve(runtimeDir, 'templates/mittEventsTemplate.d.ts'),
       })
-      logger.error(`no such file found for event types under path: ${projectTypesPath}`)
-      logger.warn(`Module is working but events not typed - not recommanded`)
-      logger.info(`Please provide mittEvents.d.ts file like:`)
-      logger.box(`export type MittEvents = {
-  //Your types
-  foo: string
-  bar?: number
-}`)
+      moduleMessenger('error', projectTypesPath)
     }
 
     addTypeTemplate({
