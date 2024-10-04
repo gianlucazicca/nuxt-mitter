@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mitter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Mitt nuxt module",
   "repository": "gianlucazicca/nuxt-mitt",
   "keywords": [
@@ -14,7 +14,7 @@
     "nuxt-mitter"
   ],
   "homepage": "https://github.com/gianlucazicca",
-  "authors":[
+  "authors": [
     "Gianluca Zicca <gianluca.dev@proton.me>"
   ],
   "license": "MIT",
