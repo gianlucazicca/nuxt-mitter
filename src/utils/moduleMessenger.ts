@@ -22,7 +22,7 @@ export const moduleMessenger: ModuleMessenger = (type, projectTypesPath) => {
       logger.error(`no such file found for event types under path: ${projectTypesPath!}`)
       logger.warn(`Module is working but events not typed - not recommanded`)
       logger.info(`Please provide mittEvents.d.ts file like:`)
-      logger.box(`export type MittEvents = {
+      logger.box(`export type MitterEvents = {
   //Your types
   foo: string
   bar?: number

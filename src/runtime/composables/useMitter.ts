@@ -13,7 +13,7 @@ export const useMitter = () => {
    * @param event The event name to emit.
    * @param payload Optional payload for the event.
    */
-  const fire = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => {
+  const emit = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => {
     mitter.emit(event, payload!)
   }
   /**
@@ -48,5 +48,5 @@ export const useMitter = () => {
     onUnmounted(() => off(event, handler))
   }
 
-  return { fire, on, off, listen }
+  return { emit, on, off, listen }
 }

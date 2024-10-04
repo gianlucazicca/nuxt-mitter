@@ -77,9 +77,9 @@ Fire an event with the composable `useMitter`
 ```vue
 <!--SayHello.vue-->
 <script setup lang="ts">
-  const { fire } = useMitter()
+  const { emit } = useMitter()
   const onClick = () => {
-    fire('hello', 'Hello 🫠🖖')
+    emit('hello', 'Hello 🫠🖖')
   }
 </script>
 
@@ -104,7 +104,7 @@ listen('hello', e => alert(e))
 ## Types
 
 ```typescript
-export type FireFunction = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => void
+export type EmitFunction = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => void
 
 export type EventHandlerFunction = <K extends keyof MitterEvents>(
   event: K,
@@ -122,7 +122,7 @@ export interface UseMitterReturn {
    * @param event The event name to emit.
    * @param payload Optional payload for the event.
    */
-  fire: FireFunction
+  emit: EmitFunction
 
   /**
    * Registers an event handler.
