@@ -1,17 +1,20 @@
 {
   "name": "nuxt-mitter",
   "version": "0.0.1",
-  "description": "Mitt nuxt module",
+  "description": "Nuxt-Mitter - Nuxt module for mitt library",
   "repository": "gianlucazicca/nuxt-mitter",
   "keywords": [
-    "events",
-    "eventemitter",
-    "emitter",
-    "eventbus",
-    "nuxt",
+    "nuxt-mitter",
+    "nuxt3",
     "nuxt-module",
     "mitter",
-    "nuxt-mitter"
+    "event",
+    "event-listener",
+    "event-emitter",
+    "emitter",
+    "event-bus",
+    "event-handler",
+    "nuxt"
   ],
   "homepage": "https://github.com/gianlucazicca",
   "authors": [
