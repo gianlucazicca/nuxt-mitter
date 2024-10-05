@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mitter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nuxt-Mitter - Nuxt module for mitt library",
   "repository": "gianlucazicca/nuxt-mitter",
   "keywords": [
