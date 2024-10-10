@@ -1,18 +1,24 @@
 <script setup lang="ts">
-const { listen } = useMitter()
+const { listen, clearAll, all } = useMitter()
 
 listen('hello', e => alert(e))
+listen('*', e => console.log('listen on all events', e, all))
 </script>
 
 <template>
   <div class="container">
     <BoxContent />
     <div>
-      <IncrementButton />
       <DecrementButton />
+      <IncrementButton />
     </div>
     <div>
       <SayHello />
+    </div>
+    <div>
+      <button @click="clearAll">
+        clear all events
+      </button>
     </div>
   </div>
 </template>

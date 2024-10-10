@@ -1,8 +1,7 @@
 <script setup lang="ts">
-const { emit, listen } = useMitter()
+const { emit } = useMitter()
 const handle = () => {
   emit('decrement')
-  listen('hello', e => console.log(e))
 }
 </script>
 

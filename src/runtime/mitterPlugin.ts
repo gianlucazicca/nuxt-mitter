@@ -1,9 +1,9 @@
 import mitt from 'mitt'
 import { defineNuxtPlugin } from 'nuxt/app'
-import type { MitterEvents } from '#build/types/mitterEvents'
+import type { NuxtMitterEvents } from '#build/types/mitterEvents'
 
 export default defineNuxtPlugin(() => {
-  const mitter = mitt<MitterEvents>()
+  const mitter = mitt<NuxtMitterEvents>()
   return {
     provide: {
       mitter,

@@ -1,5 +1,5 @@
 import { useNuxtApp } from '#app'
-import type { MitterEvents } from '#build/types/mitterEvents'
+import type { NuxtMitterEvents } from '#build/types/mitterEvents'
 import { onMounted, onUnmounted } from '#build/imports'
 /**
  * A composable that provides a type-safe event emitter interface.
@@ -13,7 +13,7 @@ export const useMitter = () => {
    * @param event The event name to emit.
    * @param payload Optional payload for the event.
    */
-  const emit = <K extends keyof MitterEvents>(event: K, payload?: MitterEvents[K]) => {
+  const emit = <K extends keyof NuxtMitterEvents>(event: K, payload?: NuxtMitterEvents[K]) => {
     mitter.emit(event, payload!)
   }
   /**
@@ -21,16 +21,16 @@ export const useMitter = () => {
    * @param event The event name to stop listening for.
    * @param handler The function to remove from the event listeners.
    */
-  const on = <K extends keyof MitterEvents>(
+  const on = <K extends keyof NuxtMitterEvents>(
     event: K,
-    handler: (payload: MitterEvents[K]) => void,
+    handler: (payload: NuxtMitterEvents[K]) => void,
   ) => {
     mitter.on(event, handler)
   }
 
-  const off = <K extends keyof MitterEvents>(
+  const off = <K extends keyof NuxtMitterEvents>(
     event: K,
-    handler: (payload: MitterEvents[K]) => void,
+    handler: (payload: NuxtMitterEvents[K]) => void,
   ) => {
     mitter.off(event, handler)
   }
@@ -40,13 +40,19 @@ export const useMitter = () => {
    * @param event The event name to listen for.
    * @param handler The function to call when the event is emitted.
    */
-  const listen = <K extends keyof MitterEvents>(
+  const listen = <K extends keyof NuxtMitterEvents>(
     event: K,
-    handler: (payload: MitterEvents[K]) => void,
+    handler: (payload: NuxtMitterEvents[K]) => void,
   ) => {
     onMounted(() => on(event, handler))
     onUnmounted(() => off(event, handler))
   }
 
-  return { emit, on, off, listen }
+  const clearAll = () => {
+    mitter.all.clear()
+  }
+
+  const all = mitter.all
+
+  return { emit, on, off, listen, clearAll, all }
 }
