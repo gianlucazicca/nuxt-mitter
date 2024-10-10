@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'node:url'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { defineNuxtModule, addPlugin, createResolver, addImportsDir, addTypeTemplate } from '@nuxt/kit'
 import { moduleMessenger } from './utils/moduleMessenger'
 
@@ -26,9 +26,15 @@ export default defineNuxtModule<ModuleOptions>({
     _nuxt.options.alias['#mitter'] = runtimeDir
 
     if (projectTypesPath && existsSync(resolve(projectRootDir, projectTypesPath))) {
+      const customTypes = readFileSync(resolve(projectRootDir, projectTypesPath), 'utf8')
+      const generatedTypesContent = `
+        ${customTypes}
+        type WildCardEvent = { '*': string }
+        export type NuxtMitterEvents = MitterEvents & WildCardEvent
+      `
       addTypeTemplate({
         filename: 'types/mitterEvents.d.ts',
-        src: resolve(projectRootDir, projectTypesPath),
+        getContents: () => generatedTypesContent,
       })
       moduleMessenger('success', projectTypesPath)
     }
@@ -48,7 +54,6 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin({
       src: resolve('./runtime/mitterPlugin'),
     })
-
     addImportsDir(resolve(runtimeDir, 'composables'))
   },
 })
