@@ -1,8 +1,11 @@
 {
   "name": "nuxt-mitter",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Nuxt-Mitter - Nuxt module for mitt library",
-  "repository": "gianlucazicca/nuxt-mitter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gianlucazicca/nuxt-mitter.git"
+  },
   "keywords": [
     "nuxt-mitter",
     "nuxt3",
@@ -35,11 +38,12 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "nuxt-module-build prepare",
     "prepack": "nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "changelogen --release && npm publish",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch",
