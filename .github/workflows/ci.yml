@@ -1,0 +1,45 @@
+name: "ci"
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare environment
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Install dependencies
+        run: nix-shell --run "pnpm install --frozen-lockfile"
+
+      - name: Lint code
+        run: nix-shell --run "pnpm lint"
+
+      - name: Build app
+        run: nix-shell --run "pnpm run prepare && pnpm prepack"
+
+      - name: Authenticate with npm
+        run: nix-shell --run "pnpm set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
+
+      - name: Release to npm
+        run: nix-shell --run "pnpm release"
+
+      - name: Commit and push changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add CHANGELOG.md
+          git commit -m "chore: update changelog"
+          git push --follow-tags
