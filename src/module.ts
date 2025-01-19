@@ -12,11 +12,14 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'nuxt-mitt',
     configKey: 'mitt',
   },
+
   defaults: {
     types: '',
   },
+
   setup(_options, _nuxt) {
     moduleMessenger('start')
+
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     const { resolve } = createResolver(import.meta.url)
     const projectRootDir = _nuxt.options.rootDir
@@ -27,15 +30,18 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (projectTypesPath && existsSync(resolve(projectRootDir, projectTypesPath))) {
       const customTypes = readFileSync(resolve(projectRootDir, projectTypesPath), 'utf8')
+
       const generatedTypesContent = `
         ${customTypes}
         type WildCardEvent = { '*': string }
         export type NuxtMitterEvents = MitterEvents & WildCardEvent
       `
+
       addTypeTemplate({
         filename: 'types/mitterEvents.d.ts',
         getContents: () => generatedTypesContent,
       })
+
       moduleMessenger('success', projectTypesPath)
     }
     else {
@@ -43,6 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
         filename: 'types/mitterEvents.d.ts',
         src: resolve(runtimeDir, 'templates/mitterEventsTemplate.d.ts'),
       })
+
       moduleMessenger('error', projectTypesPath)
     }
 
@@ -54,6 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin({
       src: resolve('./runtime/mitterPlugin'),
     })
+
     addImportsDir(resolve(runtimeDir, 'composables'))
   },
 })

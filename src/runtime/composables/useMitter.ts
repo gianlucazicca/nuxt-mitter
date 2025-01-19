@@ -1,13 +1,16 @@
 import { useNuxtApp } from '#app'
 import type { NuxtMitterEvents } from '#build/types/mitterEvents'
-import { onMounted, onUnmounted } from '#build/imports'
+import { onMounted, onUnmounted } from '#imports'
+
 /**
  * A composable that provides a type-safe event emitter interface.
  * @returns An object with methods to emit events, register and unregister event handlers.
  */
 export const useMitter = () => {
   const { $mitter } = useNuxtApp()
+
   const mitter = $mitter
+
   /**
    * Emits an event with an optional payload.
    * @param event The event name to emit.
@@ -16,6 +19,7 @@ export const useMitter = () => {
   const emit = <K extends keyof NuxtMitterEvents>(event: K, payload?: NuxtMitterEvents[K]) => {
     mitter.emit(event, payload!)
   }
+
   /**
    * Unregisters an event handler.
    * @param event The event name to stop listening for.
