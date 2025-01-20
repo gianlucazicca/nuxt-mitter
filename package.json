@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mitter",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Nuxt-Mitter - Nuxt module for mitt library",
   "repository": {
     "type": "git",
